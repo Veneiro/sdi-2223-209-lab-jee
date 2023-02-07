@@ -8,6 +8,9 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "GreetingServlet", value = "/GreetingServlet")
 public class GreetingServlet extends HttpServlet {
+    int contador = 0;
+    private Object mutex = new Object();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -21,7 +24,17 @@ public class GreetingServlet extends HttpServlet {
             out.println("Hello " + name + "<br>");
         }
         out.println("</BODY></HTML>");
-
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {}
+        out.println("Thread ID: "+Thread.currentThread().getId()+"<br>");
+        //contador es un recurso compartido entre todos los hilos.
+        //Bloqueamos el acceso a un único hilo a la vez.
+        synchronized (mutex)
+        {
+            contador++;
+            out.println("Visits:"+contador+"<br>");
+        }
     }
 
     @Override
