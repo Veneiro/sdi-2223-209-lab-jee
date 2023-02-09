@@ -43,6 +43,10 @@
     <c:forEach var="item" items="${selectedItems}">
       <tr>
         <li>${item.key} - ${item.value} </li>
+        <a href="AddToShoppingCart?product=<c:out value="${product.name}"/>"
+           class="btn btn-default">
+          <c:out value="${product.price}"/> €
+        </a>
       </tr>
     </c:forEach>
   </ul>

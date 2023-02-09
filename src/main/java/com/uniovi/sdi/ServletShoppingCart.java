@@ -53,6 +53,15 @@ public class ServletShoppingCart extends HttpServlet {
         }
     }
 
+    private void removeFromShoppingCart(Map<String, Integer> cart, String productKey){
+        if(cart.get(productKey) == null){
+            cart.put(productKey, Integer.valueOf(1));
+        } else {
+            int productCount = (Integer) cart.get(productKey).intValue();
+            cart.put(productKey, Integer.valueOf(productCount + 1));
+        }
+    }
+
     private String shoppingCartToHtml(Map<String, Integer> cart){
         String shoppingCartToHtml = "";
         for(String key: cart.keySet()){

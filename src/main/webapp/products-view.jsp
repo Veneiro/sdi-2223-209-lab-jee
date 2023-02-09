@@ -1,16 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Usuario
-  Date: 08/02/2023
-  Time: 15:02
+  Date: 09/02/2023
+  Time: 11:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" import="com.uniovi.sdi.* , java.util.List"%>
-<html lang="en">
+<html>
 <head>
-    <title>Servlets</title>
+    <title>Product View</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -18,7 +17,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <jsp:useBean id="counter" class="com.uniovi.sdi.Counter" scope="application"/>
 <jsp:setProperty name="counter" property="increase" value="1"/>
 
@@ -40,17 +38,15 @@
             </li>
         </ul>
         <div class="nav navbar-right">
-            <%--=counter%> Visitas--%>
             <jsp:getProperty name="counter" property="total"/> Visitas
         </div>
     </div>
 </nav>
 <!-- Contenido -->
 <div class="container" id="main-container">
-    <h2>Productos</h2>
+    <h2>Vista de Productos</h2>
     <div class="row ">
-        <jsp:useBean id="productsService" class="com.uniovi.sdi.ProductsService"/>
-        <c:forEach var="product" begin="0" items="${productsService.products}">
+        <c:forEach var="product" begin="0" items="${storedProducts}">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div>
                     <img src="<c:out value="${product.image}"/>"/>
